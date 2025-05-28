@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dere Concert - Full Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Import Playfair Display font */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Playfair Display', serif;
+            background: none; 
+        }
+
+       .hero-section-background {
+        background: url('images/background.png') no-repeat center -250px; /* Geser gambar ke atas */
+        background-size: 108% auto; /* Membesarkan gambar */
+        min-height: 120vh;
+        padding-top: 28px;
+    }
+
+        /* Custom CSS untuk Seating Chart Section (Pricing) */
+        .seating-chart-section-bg {
+            background: linear-gradient(to bottom, #8a3b3b, #f8e8e8);
+            padding: 5rem 0; /* Menambah padding untuk memberikan ruang pada gradasi */
+            margin: 0; 
+            width: 100%;
+        }
+
+        /* Custom CSS untuk Service Section */
+        .service-section-bg {
+            background: linear-gradient(to bottom, #f8e8e8, #a64545);
+            padding: 5rem 0; /* Menambah padding untuk memberikan ruang pada gradasi */
+            margin: 0; 
+            width: 100%;
+        }
+
+        /* Custom CSS for Contact Us Section (Footer) */
+        .contact-us-section-bg {
+            background: linear-gradient(to bottom, #a64545, #8a3b3b); /* Warna gradasi disesuaikan agar lebih terang, mirip bagian service */
+            padding: 5rem 0; /* Menambah padding untuk memberikan ruang pada gradasi */
+            margin: 0; 
+            width: 100%;
+        }
+
+        /* Custom CSS for Seating Chart Section */
+        .main-concert-section {
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            position: relative;
+            width: calc(100% - 80px);
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 0;
+            margin-bottom: 0;
+            min-width: 900px;
+        }
+
+        .seating-chart-content-wrapper {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 0.5rem;
+        }
+
+        .dene-concert-header-seating {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #FFFFFF;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        /* Specific box colors from the design */
+        .golden-tickets-box { background-color: #FDD835; }
+        .diamond-vip-box { background-color: #673AB7; }
+        .platinum-box { background-color: #2196F3; }
+        .regular-box { background-color: #4CAF50; }
+        .silver-box { background-color: #BDBDBD; }
+        .bronze-box { background-color: #795548; }
+
+        /* For the text labels in the right legend */
+        .golden-text { background-color: #FDD835; }
+        .diamond-text { background-color: #673AB7; }
+        .platinum-text { background-color: #2196F3; }
+        .regular-text { background-color: #4CAF50; }
+        .silver-text { background-color: #BDBDBD; }
+        .bronze-text { background-color: #795548; }
+
+        .legend-text-label {
+            color: #FFFFFF;
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        .legend-price-label {
+            color: #FFFFFF;
+            font-weight: normal;
+            font-size: 0.95rem;
+        }
+
+        /* Adjustments for box sizing and spacing to match the image proportion */
+        .seating-section {
+            width: 120px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+            border-radius: 4px;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .golden-tickets-section { width: 250px; height: 80px; font-size: 1.2rem; }
+        .regular-section { width: 250px; height: 70px; font-size: 1rem; }
+        .silver-section { width: 250px; height: 60px; font-size: 0.9rem; }
+        .bronze-section { width: 250px; height: 60px; font-size: 0.9rem; }
+
+        /* Adjustments for the side VIP/Platinum boxes */
+        .side-section {
+            width: 80px;
+            height: 100px;
+            font-size: 0.8rem;
+        }
+
+        .platinum-side-section {
+            width: 80px;
+            height: 90px;
+            font-size: 0.8rem;
+        }
+
+        /* Specific sizing for the small color boxes in the legend */
+        .legend-color-box {
+            width: 40px;
+            height: 30px;
+            border-radius: 4px;
+            box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+
+        /* Fine-tuning margins for layout mimicry */
+        .seating-chart-container > div + div {
+                margin-top: 10px;
+        }
+
+        .legend-item + .legend-item {
+            margin-top: 10px;
+        }
+
+        /* CSS for "DERE" background text */
+        .background-text-dere {
+            z-index: -1;
+        }
+
+        /* Smooth scrolling for anchor links */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* CUSTOM CSS for Service Section */
+        .service-section-container {
+            width: calc(100% - 80px);
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 0;
+            margin-bottom: 0;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        /* Perubahan untuk membuat kartu service jadi satu lapisan (flat) */
+        .service-card-body {
+            background-color: #e5e5e5;
+            padding: 2rem;
+            border-bottom-left-radius: 0.5rem;
+            border-bottom-right-radius: 0.5rem;
+            box-shadow: none;
+            color: #333333;
+            font-size: 1.125rem;
+            line-height: 1.6;
+        }
+
+        .service-card-header {
+            background-color: #a64545;
+            color: #FFFFFF;
+            font-weight: bold;
+            padding: 1rem 2rem;
+            border-top-left-radius: 0.5rem;
+            border-top-right-radius: 0.5rem;
+        }
+
+        /* CUSTOM CSS for Contact Us Section (Footer) */
+        .contact-us-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .contact-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 4rem;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2), 0 4px 6px -2px rgba(0,0,0,0.1);
+        }
+
+        .contact-info, .follow-us-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .contact-info h3, .follow-us-info h3 {
+            font-size: 1.75rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #FFFFFF;
+        }
+
+        .contact-info p, .follow-us-info p {
+            font-size: 1.1rem;
+            color: #E0E0E0;
+        }
+        .contact-info p span, .follow-us-info p span {
+                font-weight: bold;
+                margin-right: 0.5rem;
+        }
+
+        /* Mengurangi/menghilangkan margin-bottom pada #Home agar section berikutnya menyambung */
+        #Home {
+            min-height: 120vh; /* Dikembalikan ke 120vh agar lebih panjang */
+            margin-bottom: 0; /* Menghilangkan margin bawah */
+        }
+    </style>
+</head>
+<body class="min-h-screen overflow-x-hidden">
+    <nav class="fixed top-0 left-0 w-full bg-transparent px-8 py-4 flex justify-between items-center z-50">
+        <div class="flex items-center space-x-2">
+            <img src="images/D-removebg-preview.png" alt="Logo" class="w-20 h-20" />
+            <span class="text-black font-medium text-lg">Dere Concert</span>
+        </div>
+        <ul class="flex space-x-6 text-black font-semibold">
+            <li><a href="#Home" class="hover:underline">Home</a></li>
+            <li><a href="#seating-chart" class="hover:underline">Pricing</a></li>
+            <li><a href="#service-section" class="hover:underline">Service</a></li>
+            <li><a href="#contact-us-section" class="hover:underline">Contact</a></li> <li><a href="#" class="bg-red-600 text-white px-4 py-1 rounded hover:bg-red-700">log in</a></li>
+        </ul>
+    </nav>
+
+    <section id="Home" class="hero-section-background pt-16 px-10 flex flex-col md:flex-row justify-between items-center min-h-screen">
+    <div class="md:w-1/2 text-left text-black space-y-8 mt-[-14rem]">
+        <h1 class="text-5xl font-extrabold text-red-900">LIMITED TICKETS!!</h1>
+        <p class="text-xl">Get it now and be part of the music euphoria!</p>
+        <p class="text-xl">Feel the shaking beat of the music!<br>Don't miss the fun and excitement with Dere</p>
+        <button class="bg-red-600 text-white font-bold px-6 py-2 rounded hover:bg-red-700">buy</button>
+    </div>
+</section>
+
+
+    <section id="seating-chart" class="seating-chart-section-bg flex justify-center items-center">
+        <div class="main-concert-section flex p-8 rounded-lg shadow-2xl">
+            <div class="flex justify-between w-full mt-20">
+                <div class="flex flex-col items-center mr-16 seating-chart-container">
+                    <div class="flex items-end">
+                        <div class="seating-section diamond-vip-box side-section flex-shrink-0 mr-2" style="height: 190px; writing-mode: vertical-lr; text-orientation: mixed; transform: rotate(180deg);">
+                            <span class="whitespace-nowrap">DIAMOND VIP</span>
+                        </div>
+                        <div class="seating-section golden-tickets-box golden-tickets-section flex-shrink-0 ml-2">
+                            GOLDEN TICKETS
+                        </div>
+                        <div class="seating-section diamond-vip-box side-section flex-shrink-0 ml-2" style="height: 190px; writing-mode: vertical-lr; text-orientation: mixed;">
+                            <span class="whitespace-nowrap">DIAMOND VIP</span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center mt-3">
+                        <div class="seating-section platinum-box platinum-side-section flex-shrink-0 mr-2" style="height: 160px; writing-mode: vertical-lr; text-orientation: mixed; transform: rotate(180deg);">
+                            <span class="whitespace-nowrap">PLATINUM</span>
+                        </div>
+                        <div class="seating-section regular-box regular-section flex-shrink-0 ml-2">
+                            REGULAR
+                        </div>
+                        <div class="seating-section platinum-box platinum-side-section flex-shrink-0 ml-2" style="height: 160px; writing-mode: vertical-lr; text-orientation: mixed;">
+                            <span class="whitespace-nowrap">PLATINUM</span>
+                        </div>
+                    </div>
+
+                    <div class="seating-section silver-box silver-section mt-3">
+                        SILVER
+                    </div>
+
+                    <div class="seating-section bronze-box bronze-section mt-3">
+                        BRONZE
+                    </div>
+                </div>
+
+                <div class="flex flex-col ml-16">
+                    <div class="flex items-center mb-3 legend-item">
+                        <div class="legend-color-box golden-text mr-4"></div>
+                        <div>
+                            <div class="legend-text-label">GOLDEN TICKETS</div>
+                            <div class="legend-price-label">IDR 1.950.000</div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center mb-3 legend-item">
+                        <div class="legend-color-box diamond-text mr-4"></div>
+                        <div>
+                            <div class="legend-text-label">DIAMOND VIP</div>
+                            <div class="legend-price-label">IDR 1.250.000</div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center mb-3 legend-item">
+                        <div class="legend-color-box platinum-text mr-4"></div>
+                        <div>
+                            <div class="legend-text-label">PLATINUM</div>
+                            <div class="legend-price-label">IDR 1.150.000</div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center mb-3 legend-item">
+                        <div class="legend-color-box regular-text mr-4"></div>
+                        <div>
+                            <div class="legend-text-label">REGULAR</div>
+                            <div class="legend-price-label">IDR 825.000</div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center mb-3 legend-item">
+                        <div class="legend-color-box silver-text mr-4"></div>
+                        <div>
+                            <div class="legend-text-label">SILVER</div>
+                            <div class="legend-price-label">IDR 750.000</div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center mb-3 legend-item">
+                        <div class="legend-color-box bronze-text mr-4"></div>
+                        <div>
+                            <div class="legend-text-label">BRONZE</div>
+                            <div class="legend-price-label">IDR 650.000</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="service-section" class="service-section-bg flex flex-col items-center py-20 px-10">
+        <div class="service-section-container flex flex-col md:flex-row justify-center space-y-12 md:space-y-0 md:space-x-12">
+            <div class="flex flex-col service-card">
+                <div class="service-card-header w-full text-center">
+                    Kursi pada denah
+                </div>
+                <div class="service-card-body w-full">
+                    <p class="mb-4">
+                        <span class="font-bold">Zona A (Golden Ticket, Diamond VIP)</span><br>
+                        Kursi paling depan, view panggung maksimal, free snack & minuman.
+                    </p>
+                    <div class="horizontal-line"></div>
+                    <p class="my-4">
+                        <span class="font-bold">Zona B (Regular, Platinum)</span><br>
+                        View oke, harga bersahabat.
+                    </p>
+                    <div class="horizontal-line"></div>
+                    <p class="mt-4">
+                        <span class="font-bold">Zona C (Silver, Bronze)</span><br>
+                        Hemat tapi tetap bisa nikmati konser.
+                    </p>
+                </div>
+            </div>
+
+            <div class="flex flex-col service-card">
+                <div class="service-card-header w-full text-center">
+                    Metode pembayaran
+                </div>
+                <div class="service-card-body w-full">
+                    <ul class="list-disc list-inside space-y-2">
+                        <li>
+                            <span class="font-bold">Kartu Kredit/Debit (Visa, Mastercard, Amex)</span>
+                        </li>
+                        <li>
+                            <span class="font-bold">E-Wallet (GoPay, OVO, Dana)</span>
+                        </li>
+                        <li>
+                            <span class="font-bold">Transfer Bank (BCA, Mandiri, BNI)</span>
+                        </li>
+                        <li>
+                            <span class="font-bold">COD / Bayar di Loket (hanya untuk lokasi tertentu)</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact-us-section" class="contact-us-section-bg">
+        <div class="contact-us-container">
+            <img src="images/dere footer.webp" alt="Contact Person" class="contact-image" /> <div class="contact-info">
+                <h3>Contact us</h3>
+                <p><span>Telepon:</span> 08123456789</p>
+                <p><span>Email:</span> dereconcert@gmail.com</p>
+                <p><span>Alamat:</span> Jl. Kenanga No. 8, Jakarta</p>
+            </div>
+            <div class="follow-us-info">
+                <h3>Follow us</h3>
+                <p><span>Instagram:</span> @ticketconsert48</p>
+                <p><span>TikTok:</span> @NewTicketconnsert</p>
+                <p><span>Twitter:</span> @concertdereTicket</p>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
