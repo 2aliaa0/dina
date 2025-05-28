@@ -1,0 +1,17 @@
+.limited-section {
+  background: red;
+}
+
+.limited-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, #fceeee, #a14747); /* fallback gradient */
+  opacity: 0.7; /* transparansi biar gambar kelihatan */
+  z-index: 1;
+}
+
+.limited-section > .row {
+  position: relative;
+  z-index: 2;
+}
